@@ -7,9 +7,6 @@ namespace Seatbelt.Interop
         [DllImport("User32.dll")]
         public static extern bool GetLastInputInfo(ref LastInputInfo lastInputInfo);
 
-        [DllImport("user32.dll")]
-        public static extern bool SetProcessDPIAware();
-
         internal struct LastInputInfo
         {
             public uint Size;

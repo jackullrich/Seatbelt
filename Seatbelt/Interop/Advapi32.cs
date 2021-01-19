@@ -72,9 +72,6 @@ namespace Seatbelt.Interop
         [DllImport("advapi32")]
         public static extern int LsaClose(IntPtr PolicyHandle);
 
-        [DllImport("advapi32")]
-        public static extern int LsaFreeMemory(IntPtr Buffer);
-
         [DllImport("advapi32.dll", CharSet = CharSet.Unicode)]
         public static extern int RegOpenKeyEx(
             UIntPtr hKey,
@@ -102,27 +99,6 @@ namespace Seatbelt.Interop
             out string StringSecurityDescriptor,
             out int StringSecurityDescriptorSize);
 
-        // for GetSystem()
-        [DllImport("advapi32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool OpenProcessToken(
-            IntPtr ProcessHandle,
-            UInt32 DesiredAccess,
-            out IntPtr TokenHandle);
-
-        [DllImport("advapi32.dll")]
-        public static extern bool DuplicateToken(
-            IntPtr ExistingTokenHandle,
-            int SECURITY_IMPERSONATION_LEVEL,
-            ref IntPtr DuplicateTokenHandle);
-
-        [DllImport("advapi32.dll", SetLastError = true)]
-        public static extern bool ImpersonateLoggedOnUser(
-            IntPtr hToken);
-
-        [DllImport("advapi32.dll", SetLastError = true)]
-        public static extern bool RevertToSelf();
-
         [DllImport("advapi32.dll", EntryPoint = "CredFree", SetLastError = true)]
         internal static extern void CredFree(
             [In] IntPtr cred);
@@ -140,34 +116,6 @@ namespace Seatbelt.Interop
                 int len,
                 ref IsTextUnicodeFlags opt
             );
-
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CryptAcquireContext(ref IntPtr hProv, string pszContainer, string pszProvider, uint dwProvType, long dwFlags);
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CryptReleaseContext(IntPtr hProv, uint dwFlags);
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CryptCreateHash(IntPtr hProv, uint algId, IntPtr hKey, uint dwFlags, ref IntPtr phHash);
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CryptDestroyHash(IntPtr hHash);
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CryptHashData(IntPtr hHash, byte[] pbData, uint dataLen, uint flags);
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CryptDeriveKey(IntPtr hProv, uint Algid, IntPtr hBaseData, int flags, ref IntPtr phKey);
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CryptDestroyKey(IntPtr hKey);
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CryptDecrypt(IntPtr hKey, IntPtr hHash, bool Final, uint dwFlags, byte[] pbData, ref uint pdwDataLen);
-
-
-
 
         #endregion
 

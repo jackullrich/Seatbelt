@@ -94,12 +94,6 @@ namespace Seatbelt
         public static extern int VaultOpenVault(ref Guid vaultGuid, uint offset, ref IntPtr vaultHandle);
 
         [DllImport("vaultcli.dll")]
-        public static extern int VaultCloseVault(ref IntPtr vaultHandle);
-
-        [DllImport("vaultcli.dll")]
-        public static extern int VaultFree(ref IntPtr vaultHandle);
-
-        [DllImport("vaultcli.dll")]
         public static extern int VaultEnumerateVaults(int offset, ref int vaultCount, ref IntPtr vaultGuid);
 
         [DllImport("vaultcli.dll")]

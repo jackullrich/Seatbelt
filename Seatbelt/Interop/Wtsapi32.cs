@@ -12,14 +12,6 @@ namespace Seatbelt.Interop
         public static extern void WTSCloseServer(IntPtr hServer);
 
         [DllImport("wtsapi32.dll", SetLastError = true)]
-        public static extern int WTSEnumerateSessions(
-            IntPtr hServer,
-            [MarshalAs(UnmanagedType.U4)] int Reserved,
-            [MarshalAs(UnmanagedType.U4)] int Version,
-            ref IntPtr ppSessionInfo,
-            [MarshalAs(UnmanagedType.U4)] ref int pCount);
-
-        [DllImport("wtsapi32.dll", SetLastError = true)]
         public static extern int WTSEnumerateSessionsEx(
             IntPtr hServer,
             [MarshalAs(UnmanagedType.U4)] ref int pLevel,

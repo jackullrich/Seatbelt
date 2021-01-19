@@ -42,17 +42,6 @@ namespace Seatbelt.Interop
         [DllImport("Netapi32.dll")]
         public static extern int NetApiBufferFree(IntPtr Buffer);
 
-        [DllImport("Netapi32.dll")]
-        public static extern uint NetGetJoinInformation(
-            [MarshalAs(UnmanagedType.LPWStr)] string lpServer,
-            [MarshalAs(UnmanagedType.LPWStr)] string LocalGroupName,
-            int Level,
-            out IntPtr BufPtr,
-            int PreferredMaxLength,
-            out int EntriesRead,
-            out int TotalEntries,
-            out IntPtr ResumeHandle);
-
         [DllImport("netapi32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern void NetFreeAadJoinInformation(IntPtr pJoinInfo);
 
